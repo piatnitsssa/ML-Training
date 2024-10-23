@@ -37,6 +37,9 @@ After calculating the trip duration, I removed the dropoff_datetime and pickup_d
 ## Feature Engineering
 ### vendor_id
 I chose vendor_id as the first feature, which takes values 1 and 2. I transformed these values to a binary format by subtracting 1. I hypothesize that this feature may represent gender (e.g., 1 for male, 2 for female)
+```python
+data['vendor_id'] = data['vendor_id'] - 1
+```
 ### travel_distance
 For the next feature, I calculated the distance from the pickup point to the drop-off point using the four columns: pickup_longitude, pickup_latitude, dropoff_longitude, and dropoff_latitude. I used the geopy library for this purpose.
 ```python
