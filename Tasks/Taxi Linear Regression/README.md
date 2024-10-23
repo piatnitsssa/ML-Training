@@ -1,3 +1,5 @@
+Вот текст с добавленными специальными символами и обозначениями для разметки:
+
 # Project Title: Taxi Trip Duration Prediction
 
 ## Data Sources
@@ -8,6 +10,7 @@
 
 ### Dependencies
 To install the required dependencies, use the following command:
+
 pip install -r requirements.txt
 
 ### Running the Code
@@ -35,7 +38,7 @@ The raw data includes the following columns:
 
 ### Target Variable
 I selected the target variable as the trip duration. This was calculated by subtracting dropoff_datetime from pickup_datetime. Then, I applied the `dt.total_seconds()` method from the pandas framework to convert the duration into seconds:
-
+```python
 data['trip_duration'] = (data['dropoff_datetime'] - data['pickup_datetime']).dt.total_seconds()
 
 After calculating the trip duration, I removed the dropoff_datetime and pickup_datetime columns since they were no longer needed.
@@ -45,4 +48,59 @@ Feature Engineering
 	1.	Vendor ID:
 I chose vendor_id as the first feature, which takes values 1 and 2. I transformed these values to a binary format by subtracting 1. I hypothesize that this feature may represent gender (e.g., 1 for male, 2 for female).
 
+data['vendor_id'] = data['vendor_id'] - 1
 
+
+	2.	Travel Distance:
+For the next feature, I calculated the distance from the pickup point to the drop-off point using the four columns: pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude. I used the geopy library for this purpose.
+
+from geopy.distance import geodesic
+
+def calculate_distance(row):
+    pickup_coords = (row['pickup_latitude'], row['pickup_longitude'])
+    dropoff_coords = (row['dropoff_latitude'], row['dropoff_longitude'])
+    return geodesic(pickup_coords, dropoff_coords).meters
+
+data['travel_distance'] = data.apply(calculate_distance, axis=1)
+
+Although I could have used the Pythagorean theorem, I opted for this approach for accuracy.
+
+	3.	Average Speed:
+With both the trip duration and travel distance features, I calculated the average speed:
+
+data['average_speed'] = data['travel_distance'] / data['trip_duration']
+
+
+
+Additional Features
+
+	•	Passenger Count:
+The store_and_fwd_flag column was removed since it contained a single value (N), which would not yield any useful features. The passenger_count column was retained, but I filtered out specific values (0, 7, 8, 9) as they are considered outliers:
+
+data = data[~data['passenger_count'].isin([0, 7, 8, 9])]
+
+I then created 6 categories using one-hot encoding:
+
+data = pd.concat((data, pd.get_dummies(data['passenger_count'].astype(int))), axis=1)
+
+After this, I converted the new boolean columns to integers:
+
+data[[1, 2, 3, 4, 5, 6]] = data[[1, 2, 3, 4, 5, 6]].astype(int)
+
+I subsequently dropped the original passenger_count column and renamed the new columns for clarity:
+
+data = data.rename(columns={
+    1: '1_passenger',
+    2: '2_passenger',
+    3: '3_passenger',
+    4: '4_passenger',
+    5: '5_passenger',
+    6: '6_passenger'
+})
+
+
+
+	4.	Final Adjustments:
+Lastly, I removed the id column as it was unnecessary for model training. At this point, I had 4 features and 1 target variable ready for training.
+
+Теперь вы можете просто скопировать и вставить этот текст в ваш README файл.
