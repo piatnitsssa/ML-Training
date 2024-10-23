@@ -29,7 +29,7 @@ The raw data includes the following columns:
 - dropoff_latitude
 - store_and_fwd_flag
 ## Target Variable
-I selected the target variable as the trip duration. This was calculated by subtracting dropoff_datetime from pickup_datetime. Then, I applied the dt.total_seconds() method from the pandas framework to convert the duration into seconds:
+I selected the target variable as the trip duration. This was calculated by subtracting pickup_datetime from dropoff_datetime. Then, I applied the dt.total_seconds() method from the pandas framework to convert the duration into seconds:
 ```python
 data['trip_duration'] = (data['dropoff_datetime'] - data['pickup_datetime']).dt.total_seconds()
 ```
