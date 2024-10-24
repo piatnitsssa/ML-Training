@@ -86,6 +86,8 @@ data = data.rename(columns={
 ## Final Adjustments
 Lastly, I removed the id column as it was unnecessary for model training. At this point, I had 4 features and 1 target variable ready for training.
 
+You could also use coordinates to create a categorical feature, meaning that based on the coordinates, you could define areas and predict the trip duration for each area. Each area may have its own characteristics: road traffic, road quality, weather conditions, and specific traffic rules in a particular state.
+
 # Learning 
 
 ## Training and Evaluating the Model
