@@ -2,9 +2,7 @@
 
 У меня есть результаты предсказаний двух моделей. Мне необходимо провести анализ и вывести метрики, которые помогут оценить точность моделей по различным параметрам.
 
-Данные [скачать](https://vk.com/doc331385305_679774932?hash=GtkSZwXCBLJgZYWsSjZzihtuNpdARXd5lG95yeOJZic&dl=ZYf9PqWP7mPz8fJ74V1GcdpxxGffgVH6X7ZnfBBITTs&from_module=vkmsg_desktop[8779D3A6-0DBA-4DC7-9C58-67AC2A877A14.txt](https://github.com/user-attachments/files/17506103/8779D3A6-0DBA-4DC7-9C58-67AC2A877A14.txt))(160,8 MB)
-
-- **Raw Data:** [Download Raw Data](https://vk.com/doc331385305_679741102?hash=N7ULRVyk8RqTCw3Xu3elyLlcAfyXPG7a171xshEPPqD&dl=HYQWcE8QzYuTim2a1qvjItx1MOND3BCuZrov89c5Lmo&from_module=vkmsg_desktop) (190,8 MB)
+- **Данные** [скачать](https://vk.com/doc331385305_679774932?hash=GtkSZwXCBLJgZYWsSjZzihtuNpdARXd5lG95yeOJZic&dl=ZYf9PqWP7mPz8fJ74V1GcdpxxGffgVH6X7ZnfBBITTs&from_module=vkmsg_desktop[8779D3A6-0DBA-4DC7-9C58-67AC2A877A14.txt](https://github.com/user-attachments/files/17506103/8779D3A6-0DBA-4DC7-9C58-67AC2A877A14.txt))(160,8 MB)
 
 ## Mean Squared Error (MSE)
 
