@@ -146,9 +146,11 @@ def train_and_evaluate_model(data_path):
 ## Results
 The linear regression model demonstrates reasonable results for part of the data, but there are cases with significant deviations, which may indicate insufficient model complexity or the presence of unaccounted factors affecting trip duration.
 
+I believe that using MAE (Mean Absolute Error) would be more appropriate for evaluating this model. MSE shows larger values because there are several predictions that significantly deviate from the actual values. MAE is less strict, and for this task, we could focus less on the magnitude of the error and more on the number of accurate predictions.
 
 ![Result](https://i.imgur.com/RLmDyVO.png)
 
+It seems to me that for the first week of my learning, it looks pretty good!
 
 
 
