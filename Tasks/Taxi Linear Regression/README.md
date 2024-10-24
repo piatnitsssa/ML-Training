@@ -86,3 +86,73 @@ data = data.rename(columns={
 ## Final Adjustments
 Lastly, I removed the id column as it was unnecessary for model training. At this point, I had 4 features and 1 target variable ready for training.
 
+# Learning 
+
+## Training and Evaluating the Model
+
+In this section, I will train and evaluate a linear regression model to predict the duration of a taxi trip. The steps involve loading the dataset, splitting the data into training and test sets, fitting a linear regression model, and evaluating the performance using the Mean Squared Error (MSE).
+
+### Code Breakdown
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+
+def train_and_evaluate_model(data_path):
+    # Load the dataset
+    data = pd.read_csv(data_path)
+    
+    # Split the data into features (X) and target (y)
+    X = data.drop(columns=['trip_duration'])  # Features (excluding target variable)
+    y = data['trip_duration']  # Target variable (trip duration)
+    
+    # Split the data into training and testing sets (80% train, 20% test)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    # Initialize and train the linear regression model
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    
+    # Predict the trip duration on the test data
+    y_pred = model.predict(X_test)
+    
+    # Calculate the Mean Squared Error (MSE)
+    mse = mean_squared_error(y_test, y_pred)
+    print(f"Mean Squared Error: {mse}")
+    
+    # Plot Actual vs Predicted trip duration
+    plt.figure(figsize=(10, 6))
+    plt.scatter(y_test, y_pred, color='blue', label='Predicted')
+    plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2, label='Actual')
+    plt.xlabel('Actual')
+    plt.ylabel('Predicted')
+    plt.title(f'Linear Regression: Actual vs Predicted (MSE: {mse:.2f})')
+    plt.legend()
+    plt.show()
+```
+## Explanation
+
+1. Loading the dataset: The dataset is loaded from a CSV file using the pd.read_csv() function.
+2. Feature and target selection: The features (X) are all columns except trip_duration, which is the target (y).
+3. Train-test split: The data is split into training and test sets using an 80/20 ratio with the train_test_split() function from sklearn. The random_state=42 ensures reproducibility.
+4. Model training: The LinearRegression() model from sklearn is instantiated and trained on the training set using model.fit().
+5. Prediction: The model makes predictions on the test data using model.predict().
+6. Mean Squared Error (MSE): The MSE is computed using mean_squared_error() to evaluate the model’s performance, which measures the average squared difference between actual and predicted trip durations.
+7. Plotting Actual vs Predicted: A scatter plot is generated comparing the actual and predicted values. The red dashed line represents the ideal line where predicted values exactly match the actual values. The closer the blue scatter points are to this line, the better the model’s predictions.
+
+## Results
+The linear regression model demonstrates reasonable results for part of the data, but there are cases with significant deviations, which may indicate insufficient model complexity or the presence of unaccounted factors affecting trip duration.
+
+
+![Result](https://i.imgur.com/RLmDyVO.png)
+
+
+
+
+
+
+
+
