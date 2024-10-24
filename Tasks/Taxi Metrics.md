@@ -140,7 +140,11 @@ counter_under = (df['prediction'] < df['trip_duration']).sum()
 
 При проверке точности этих моделей, они показали нулевой резултат.
 
-Для этого я использовал код ниже
+Для этого я использовал код ниже:
+
+```python
+counter_accuracy = (df['prediction'] == df['trip_duration']).sum()
+```
 
 ## Общие выводы
 
