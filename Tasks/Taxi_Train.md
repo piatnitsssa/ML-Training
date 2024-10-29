@@ -206,7 +206,43 @@ def calculate_distance(row):
 df['travel_distance'] = df.apply(calculate_distance, axis=1)
 df['average_speed'] = df['travel_distance'] / df['trip_duration']
 ```
+## Обучение модели 
 
+Загружаю размеченные данные:
+
+```python
+df = pd.read_csv('path to data')
+```
+
+Фичи:
+
+```python
+X = df.drop('trip_duration', axis=1)
+```
+
+Таргет:
+
+```python
+y = df('trip_duration')
+```
+Разбиение данных:
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
+```
+
+Модель Линейной регрессии:
+
+```python
+model = LinearRegression()
+```
+
+Обучение модели:
+
+```python
+model.fit(X_train, y_train)
+
+Теперь у меня есть обученная модель. Следующим шагом сделаю оценку ее точности предсказания.
 
 
 
