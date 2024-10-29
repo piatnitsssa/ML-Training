@@ -154,7 +154,7 @@ Name: count, dtype: int64
 Приведу этот признак к бинарному виду.
 
 ```python
-df['vendor_id'].value_counts()
+df['vendor_id'] -= 1
 ```
 
 ### passenger_count
